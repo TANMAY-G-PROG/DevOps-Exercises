@@ -13,10 +13,12 @@ pipeline {
 
         stage('Build Delivery Metrics Image') {
             steps {
-                sh '''
-                    docker rm -f delivery_metrics 2>/dev/null || true
-                    docker build -t delivery_metrics .
-                '''
+                dir('Exercise_6/delivery_monitoring') {
+                    sh '''
+                        docker rm -f delivery_metrics 2>/dev/null || true
+                        docker build -t delivery_metrics .
+                    '''
+                }
             }
         }
 
